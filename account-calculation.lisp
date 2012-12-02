@@ -10,17 +10,18 @@
 ;; So it's a basic equation with two unknowns of the following form:
 ;;   x = (y * [her salary]) / [my salary]
 ;;   x + y = [total]
-(defun calc (data)
-  "data is a plist where :me is my salary, :love is her salary, :total is how much we need for the month"
-  (let (her-amount
-        my-amount
-        (her-salary (getf data :love))
-        (my-salary (getf data :me))
-        (total (getf data :total)))
-    (setf her-amount (round
-                      (/
-                       (/ (* her-salary total) my-salary)
-                       (+ 1
-                          (/ her-salary my-salary)))))
-    (setf my-amount (round (- total her-amount)))
-    (format t "I pay ~A and she pays ~A" my-amount her-amount)))
+(defun calc (my-salary her-salary total)
+  (let* ((her-amount (calc-her-amount my-salary her-salary total))
+         (my-amount (calc-my-amount total her-amount)))
+    (format t "My amount: ~A~%Her amount: ~A" my-amount her-amount)))
+
+(defun calc-her-amount (my-salary her-salary total)
+  (round
+   (/
+    (/ (* her-salary total) my-salary)
+    (+ 1
+       (/ her-salary my-salary)))))
+
+(defun calc-my-amount (total her-amount)
+  (round
+   (- total her-amount)))
