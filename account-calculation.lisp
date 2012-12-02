@@ -19,9 +19,8 @@
   (round (/ (/ (* her-salary
                   total)
                my-salary)
-            (+ 1
-               (/ her-salary
-                  my-salary)))))
+            (1+ (/ her-salary
+                     my-salary)))))
 
 (defun calc-my-amount (total her-amount)
   (round
