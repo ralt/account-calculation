@@ -19,5 +19,4 @@
   (round total (1+ (/ my-salary her-salary))))
 
 (defun calc-my-amount (total her-amount)
-  (round
-   (- total her-amount)))
+  (round (- total her-amount)))
