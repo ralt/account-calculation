@@ -16,11 +16,12 @@
     (format t "My amount: ~A~%Her amount: ~A" my-amount her-amount)))
 
 (defun calc-her-amount (my-salary her-salary total)
-  (round
-   (/
-    (/ (* her-salary total) my-salary)
-    (+ 1
-       (/ her-salary my-salary)))))
+  (round (/ (/ (* her-salary
+                  total)
+               my-salary)
+            (+ 1
+               (/ her-salary
+                  my-salary)))))
 
 (defun calc-my-amount (total her-amount)
   (round
